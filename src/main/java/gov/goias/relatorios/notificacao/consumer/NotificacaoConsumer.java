@@ -21,7 +21,7 @@ public class NotificacaoConsumer {
         this.notificationService = notificationService;
     }
 
-    @KafkaListener(topics = "${kafka.topic.notificacao}", groupId = "relatorio-group")
+    @KafkaListener(topics = "${kafka.topic.relatorio.notificacao}", groupId = "relatorio-group")
     @Retryable(value = {Exception.class}, maxAttempts = 3, backoff = @Backoff(delay = 1000, multiplier = 2))
     public void consumir(ConsumerRecord<String, String> record) {
         log.info("Chave = {}", record.key());
